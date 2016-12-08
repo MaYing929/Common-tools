@@ -22,47 +22,7 @@
     <favorites_list name="Common-tools" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="utils.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/工具类/utils.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="107">
-              <caret line="88" column="16" selection-start-line="88" selection-start-column="4" selection-end-line="88" selection-end-column="16" />
-              <folding>
-                <element signature="e#0#40#0" expanded="false" />
-                <element signature="e#257#383#0" expanded="false" />
-                <element signature="e#417#558#0" expanded="false" />
-                <element signature="e#688#1343#0" expanded="false" />
-                <element signature="e#1385#1986#0" expanded="false" />
-                <element signature="e#2028#2631#0" expanded="false" />
-                <element signature="e#2672#3042#0" expanded="false" />
-                <element signature="e#3079#3583#0" expanded="false" />
-                <element signature="e#3618#3993#0" expanded="false" />
-                <element signature="e#4034#6080#0" expanded="false" />
-                <element signature="e#6131#9718#0" expanded="false" />
-                <element signature="e#6158#9641#0" expanded="false" />
-                <element signature="e#9783#10058#0" expanded="false" />
-                <element signature="e#10093#10277#0" expanded="false" />
-                <element signature="e#10318#10724#0" expanded="false" />
-                <element signature="e#10764#11031#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="token.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/工具类/token.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="109">
-              <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
-              <folding>
-                <element signature="e#0#40#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -220,7 +180,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3162000" />
+    <option name="totallyTimeSpent" value="3452000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="221" y="23" width="1440" height="805" extended-state="0" />
@@ -265,6 +225,48 @@
         <state relative-caret-position="48">
           <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/工具类/utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="88" column="16" selection-start-line="88" selection-start-column="4" selection-end-line="88" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#40#0" expanded="false" />
+            <element signature="e#257#383#0" expanded="false" />
+            <element signature="e#417#558#0" expanded="false" />
+            <element signature="e#688#1343#0" expanded="false" />
+            <element signature="e#1385#1986#0" expanded="false" />
+            <element signature="e#2028#2631#0" expanded="false" />
+            <element signature="e#2672#3042#0" expanded="false" />
+            <element signature="e#3079#3583#0" expanded="false" />
+            <element signature="e#3618#3993#0" expanded="false" />
+            <element signature="e#4034#6080#0" expanded="false" />
+            <element signature="e#6131#9718#0" expanded="false" />
+            <element signature="e#6158#9641#0" expanded="false" />
+            <element signature="e#9783#10058#0" expanded="false" />
+            <element signature="e#10093#10277#0" expanded="false" />
+            <element signature="e#10318#10724#0" expanded="false" />
+            <element signature="e#10764#11031#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/工具类/token.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#40#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
         </state>
       </provider>
     </entry>
