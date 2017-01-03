@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+        body, html{width: 100%;height: 100%;margin:0;font-family:"微软雅黑";}
+        #container{height:500px;width:100%;}
+    </style>
+
+    <!--引入百度地图库-->
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=FB14a133b9bf40fec90d36c84fb4dd13"></script>
+    <!--引入计算阴影部分的插件库-->
+    <script type="text/javascript" src="https://npmcdn.com/@turf/turf@3.5.1/turf.min.js"></script>
+
+    <!-- 加载鼠标绘制工具-->
+    <script type="text/javascript" src="//api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js"></script>
+    <link rel="stylesheet" href="//api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css" />
+    </head>
+
+    <body>
+       <div id='container' ></div>
+    </body>
+    </html>
+
+<script  type="text/javascript">
+
+    //改变成百度地图能识别的数据结构
+    function getPolygon(data, color) {
+        var array = [];
+        if(data.length > 0){
+            data.map( (item)=>{
+                array.push(new BMap.Point(item[0],item[1]));
+            })
+        }
+        return new BMap.Polygon(array, {strokeColor:color, strokeWeight:2, strokeOpacity:0.5});
+    }
+    //改变成turf_difference能识别的数据结构
+    function getDifferencePoint(type,data){
+        return {
+            "type": "Feature",
+            "geometry": {
+                "type": type,
+                "coordinates":[data]
+            }
+        }
+    }
+/   //计算区域交集与交集的差集
+    function changeResult (data,color,fn){
+        let l = data.geometry.coordinates.length;
+        if(l == 0){
+            console.log('没有差集区域');
+        }else if(l ==1){
+            map.addOverlay(fn(data.geometry.coordinates[0],color));
+        }else if(l >1){
+            data.geometry.coordinates.map((item)=>{
+                map.addOverlay(fn(item[0],color));
+            })
+        }
+
+    }
+
+    // 百度地图API功能
+    var map = new BMap.Map("container");
+    var point = new BMap.Point(116.404, 39.915);
+    map.centerAndZoom(point, 15);
+
+    var dataF = [
+        [
+            [116.392214,39.918985],
+            [116.41478,39.918985],
+            [116.41478,39.911901],
+            [116.392214,39.911901],
+            [116.392214,39.918985],
+        ]
+    ];
+    var data1 = [
+        [
+            [116.387112,39.923977],
+            [116.385243,39.913063],
+            [116.394226,39.917988],
+            [117.391772,39.924564],
+            [117.39248,39.927896],
+            [116.387112,39.923977],
+        ]
+    ];
+    var data2 = [
+        [
+            [116.41478,39.918985],
+            [116.385243,39.913078],
+            [116.394226,39.917992],
+            [116.401772,39.921364],
+            [116.41248,39.927839],
+            [116.41478,39.918985],
+        ]
+    ];
+    //turf插件
+    var polygon1 = turf.polygon(data1);
+    var polygon2 = turf.polygon(data2);
+    var polygonF = turf.polygon(dataF);
+
+    //data1与本体的交集
+    var polygonIntersect1 = turf.intersect(polygon1, polygonF);
+    let  resultPoint1 = polygonIntersect1.geometry.coordinates[0];
+    //data2与本体的交集
+    var polygonIntersect2 = turf.intersect(polygon2, polygonF);
+    let  resultPoint2 = polygonIntersect2.geometry.coordinates[0];
+
+    let  ResultDifferenceType1 = getDifferencePoint('Polygon',resultPoint1)
+    let  ResultDifferenceType2=  getDifferencePoint('Polygon',resultPoint2)
+
+    //取 resultPoint1 与 resultPoint2 的差集（第一个参数为基准，之后计算完差集返回的是基准图形的差集）
+    var differenced = turf.difference(ResultDifferenceType2, ResultDifferenceType1);
+
+
+    changeResult (differenced,'black',getPolygon)
+
+
+//    需求  现在是两两的差集比较绘制出来 需要做的是多个差集之间的比较并且把最后的结果绘制出来
+
+
+
+
+//        绘制基础图形
+//        map.addOverlay(getPolygon(dataF[0],'red'));
+//        //绘制第一个原始图形
+//        map.addOverlay(getPolygon(data1[0],'blue'));
+//        绘制第二个原始图形
+//        map.addOverlay(getPolygon(data2[0],'yellow'));
+          //绘制第一个原始图形data1与基础图形的交集 result1
+//        map.addOverlay(getPolygon(resultPoint1,'red'));
+//        绘制第二个原始图形data2与基础图形的交集 result2
+//        map.addOverlay(getPolygon(resultPoint2,'green'));
+
+
+
+
+</script>

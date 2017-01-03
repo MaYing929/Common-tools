@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title></title>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=FB14a133b9bf40fec90d36c84fb4dd13"></script>
+
+    <style type="text/css">
+        body, html{width: 100%;height: 100%;margin:0;font-family:"微软雅黑";}
+        #container{height:600px;width:100%;}
+    </style>
+
+</head>
+<body>
+<div id="container"></div>
+</body>
+</html>
+<script type="text/javascript">
+    // 百度地图API功能
+    var map = new BMap.Map("container");
+    var point = new BMap.Point(116.404, 39.915);
+    map.centerAndZoom(point, 15);
+    var bs = map.getBounds();   //获取可视区域
+    var bssw = bs.getSouthWest();   //可视区域左下角
+    var bsne = bs.getNorthEast();   //可视区域右上角
+    console.log("当前地图可视范围是：" + bssw.lng + "," + bssw.lat + "到" + bsne.lng + "," + bsne.lat);
+    var marker = new BMap.Marker(new BMap.Point(116.404, 39.915));
+
+    var data1 = [
+        [
+            [116.387112,39.920977],
+            [116.385243,39.913063],
+            [116.394226,39.917988],
+            [116.401772,39.921364],
+            [116.41248,39.927893],
+            [116.387112,39.920977],
+        ]
+    ];
+
+    // 画多边形的函数
+    function getPolygon(data, color) {
+        var array = [];
+        if(data.length > 0){
+            data.map( (item)=>{
+                array.push(new BMap.Point(item[0],item[1]));
+            })
+        }
+        return new BMap.Polygon(array, {strokeColor:color, strokeWeight:3, strokeOpacity:0.6});
+    }
+
+    //添加覆盖物
+    function add_overlay(){
+       var data = data1[0];
+        for(let i = 0 ;i <150; i ++){
+            map.addOverlay(getPolygon(data,'yellow'));
+            data[4][0] -= 0.00005;
+            data[4][1] -= 0.00005;
+            console.log('i',++i)
+        }
+    }
+
+    add_overlay()
+
+</script>

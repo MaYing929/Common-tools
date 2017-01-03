@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+        body, html{width: 100%;height: 100%;margin:0;font-family:"微软雅黑";}
+        #container{height:500px;width:100%;}
+    </style>
+
+    <!--引入百度地图库-->
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=FB14a133b9bf40fec90d36c84fb4dd13"></script>
+    <!--引入计算阴影部分的插件库-->
+    <script type="text/javascript" src="https://npmcdn.com/@turf/turf@3.5.1/turf.min.js"></script>
+
+    <!-- 加载鼠标绘制工具-->
+    <script type="text/javascript" src="//api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js"></script>
+    <link rel="stylesheet" href="//api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css" />
+
+
+</head>
+<body>
+<div id='container' ></div>
+</body>
+</html>
+
+<script  type="text/javascript">
+    // 百度地图API功能
+    var map = new BMap.Map("container");
+    var point = new BMap.Point(116.404, 39.915);
+    map.centerAndZoom(point, 15);
+
+    var data1 = [
+        [
+            [116.387112,39.920977],
+            [116.385243,39.913063],
+            [116.394226,39.917988],
+            [116.401772,39.921364],
+            [116.41248,39.927893],
+            [116.387112,39.920977],
+        ]
+    ];
+    var data2 = [
+        [
+            [116.392214,39.918985],
+            [116.41478,39.918985],
+            [116.41478,39.911901],
+            [116.392214,39.911901],
+            [116.392214,39.918985],
+        ]
+    ];
+
+   //turf插件
+    var polygon1 = turf.polygon(data1);
+    var polygon2 = turf.polygon(data2);
+    var polygon = turf.intersect(polygon1, polygon2);
+    let  resultPoint = polygon.geometry.coordinates[0];
+
+//    获取百度地图支持的点
+    function getPolygon(data, color) {
+       var array = [];
+        if(data.length > 0){
+            data.map( (item)=>{
+                array.push(new BMap.Point(item[0],item[1]));
+            })
+        }
+        return new BMap.Polygon(array, {strokeColor:color, strokeWeight:2, strokeOpacity:0.5});
+    }
+
+
+
+
+//  map.addOverlay(getPolygon(data1[0],'red'));
+    map.addOverlay(getPolygon(data2[0],'yellow'));
+    map.addOverlay(getPolygon(resultPoint,'blue'));
+
+
+
+</script>
